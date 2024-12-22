@@ -47,9 +47,11 @@ local function connection_nodes(handler, conn, result)
 
     for _, struct in ipairs(structs) do
       local node_id = (parent_id or "") .. "__connection_" .. struct.name .. struct.schema .. struct.type .. "__"
-      vim.api.nvim_out_write(
-        string.format("struct.name=%s, struct.schema=%s, struct.type=%s\n", struct.name, struct.schema, struct.type)
-      )
+      if struct.name == "users" or struct.name == "examples" then
+        vim.api.nvim_out_write(
+          string.format("struct.name=%s, struct.schema=%s, struct.type=%s\n", struct.name, struct.schema, struct.type)
+        )
+      end
       local node = NuiTree.Node({
         id = node_id,
         name = struct.name,
@@ -70,7 +72,7 @@ local function connection_nodes(handler, conn, result)
             title = "Select a Query",
             items = items,
             on_confirm = function(selection)
-              vim.api.nvim_out_write(string.format("helpers[selection]=%s", helpers[selection]))
+              vim.api.nvim_out_write(string.format("helpers[selection]=%s\n", helpers[selection]))
               local call = handler:connection_execute(conn.id, helpers[selection])
               result:set_call(call)
               cb()
