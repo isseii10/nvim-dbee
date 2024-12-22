@@ -47,6 +47,9 @@ local function connection_nodes(handler, conn, result)
 
     for _, struct in ipairs(structs) do
       local node_id = (parent_id or "") .. "__connection_" .. struct.name .. struct.schema .. struct.type .. "__"
+      vim.api.nvim_out_write(
+        string.format("struct.name=%s, struct.schema=%s, struct.type=%s\n", struct.name, struct.schema, struct.type)
+      )
       local node = NuiTree.Node({
         id = node_id,
         name = struct.name,
