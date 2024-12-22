@@ -70,6 +70,7 @@ local function connection_nodes(handler, conn, result)
             title = "Select a Query",
             items = items,
             on_confirm = function(selection)
+              vim.api.nvim_out_write(string.format("helpers[selection]=%s", helpers[selection]))
               local call = handler:connection_execute(conn.id, helpers[selection])
               result:set_call(call)
               cb()
