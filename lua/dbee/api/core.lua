@@ -98,6 +98,7 @@ end
 ---@return table<string, string> _ list of table helpers
 ---@see table_helpers
 function core.connection_get_helpers(id, opts)
+  print(opts)
   return state.handler():connection_get_helpers(id, opts)
 end
 
