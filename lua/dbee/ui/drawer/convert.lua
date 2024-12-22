@@ -300,8 +300,10 @@ end
 function M.handler_nodes(handler, result)
   -- in case there are no sources defined, return helper nodes
   if #handler:get_sources() < 1 then
+    vim.api.nvim_out_write("handler_help_nodes() called\n")
     return handler_help_nodes()
   end
+  vim.api.nvim_out_write("handler_real_nodes() called\n")
   return handler_real_nodes(handler, result)
 end
 
