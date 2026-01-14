@@ -15,7 +15,9 @@ function M.select(opts)
   end
 
   local width = vim.api.nvim_win_get_width(opts.relative_winid)
-  local row, _ = unpack(vim.api.nvim_win_get_cursor(opts.relative_winid))
+  local cursor_row, _ = unpack(vim.api.nvim_win_get_cursor(opts.relative_winid))
+  local first_visible = vim.fn.line("w0", opts.relative_winid)
+  local row = cursor_row - first_visible + 1
 
   local popup_options = {
     relative = {
@@ -93,7 +95,9 @@ function M.input(opts)
   end
 
   local width = vim.api.nvim_win_get_width(opts.relative_winid)
-  local row, _ = unpack(vim.api.nvim_win_get_cursor(opts.relative_winid))
+  local cursor_row, _ = unpack(vim.api.nvim_win_get_cursor(opts.relative_winid))
+  local first_visible = vim.fn.line("w0", opts.relative_winid)
+  local row = cursor_row - first_visible + 1
 
   local popup_options = {
     relative = {
