@@ -1,5 +1,6 @@
 local NuiMenu = require("nui.menu")
 local NuiInput = require("nui.input")
+local event = require("nui.utils.autocmd").event
 
 local M = {}
 
@@ -85,6 +86,10 @@ function M.select(opts)
   end
 
   menu:mount()
+
+  menu:on(event.BufLeave, function()
+    menu:unmount()
+  end)
 end
 
 -- Ask for input.
@@ -150,6 +155,10 @@ function M.input(opts)
   end
 
   input:mount()
+
+  input:on(event.BufLeave, function()
+    input:unmount()
+  end)
 end
 
 return M
