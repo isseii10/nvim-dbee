@@ -158,6 +158,11 @@ function M.input(opts)
   end
 
   input:mount()
+
+  -- close input when focus is lost
+  input:on(event.BufLeave, function()
+    input:unmount()
+  end)
 end
 
 return M
