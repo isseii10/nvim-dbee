@@ -63,6 +63,8 @@ local function connection_nodes(handler, conn, result)
           local items = vim.tbl_keys(helpers)
           table.sort(items)
 
+          vim.print("[DEBUG] Select a Query menu opened", { conn_id = conn.id, table = struct.name, items = items })
+
           select {
             title = "Select a Query",
             items = items,
