@@ -298,6 +298,8 @@ function M.hover(relative_winid, contents, opts)
   local first_visible = vim.fn.line("w0", relative_winid)
   local row_in_window = cursor_row - first_visible
 
+  vim.print("[DEBUG] hover", { cursor_row = cursor_row, first_visible_row = first_visible, row_in_window = row_in_window })
+
   -- open to left/right based on window position
   local col
   local anchor
