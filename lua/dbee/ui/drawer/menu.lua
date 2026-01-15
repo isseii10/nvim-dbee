@@ -19,6 +19,8 @@ function M.select(opts)
   local first_visible = vim.fn.line("w0", opts.relative_winid)
   local row = cursor_row - first_visible + 1
 
+  vim.print("[DEBUG] menu.select", { cursor_row = cursor_row, first_visible = first_visible, row = row })
+
   local popup_options = {
     relative = {
       type = "win",
